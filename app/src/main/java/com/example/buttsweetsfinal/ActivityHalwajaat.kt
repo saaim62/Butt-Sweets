@@ -9,16 +9,17 @@ import android.widget.Toast
 import com.example.buttsweetsfinal.network.Product
 import com.example.buttsweetsfinal.network.APIConfig
 import com.example.buttsweetsfinal.network.APIService
-import com.example.buttsweetsfinal.adapters.ProductAdapter
+import com.example.buttsweetsfinal.adapters.CakeAdapter
+import com.example.buttsweetsfinal.adapters.HalwajaatAdapter
 import io.paperdb.Paper
-import kotlinx.android.synthetic.main.activity_product_list.*
+import kotlinx.android.synthetic.main.activity_halwajaat.*
 import retrofit2.Call
 import retrofit2.Response
 
-class ActivityProductList : AppCompatActivity() {
+class ActivityHalwajaat : AppCompatActivity() {
 
     private lateinit var apiService: APIService
-    private lateinit var productAdapter: ProductAdapter
+    private lateinit var halwajaatAdapter: HalwajaatAdapter
 
     private var products = listOf<Product>()
 //    val APIConfig = APIConfig.
@@ -27,7 +28,7 @@ class ActivityProductList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Paper.init(this)
 
-        setContentView(R.layout.activity_product_list)
+        setContentView(R.layout.activity_halwajaat)
 
 
 //        setSupportActionBar(toolbar)
@@ -51,7 +52,7 @@ class ActivityProductList : AppCompatActivity() {
             )
 
 
-        cart_size.text = ShoppingCart.getShoppingCartSize().toString()
+        cart_size_halwajaat.text = ShoppingCart.getShoppingCartSize().toString()
 
         getProducts()
 
@@ -66,12 +67,12 @@ class ActivityProductList : AppCompatActivity() {
 
     fun getProducts() {
 
-        apiService.getProducts().enqueue(object : retrofit2.Callback<List<Product>> {
+        apiService.getHalwajaat().enqueue(object : retrofit2.Callback<List<Product>> {
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
 
                 print(t.message)
                 t.message?.let { Log.d("Data error", it) }
-                Toast.makeText(this@ActivityProductList, t.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ActivityHalwajaat, t.message, Toast.LENGTH_SHORT).show()
 
             }
 
@@ -82,11 +83,11 @@ class ActivityProductList : AppCompatActivity() {
 
                 products = response.body()!!
 
-                productAdapter = ProductAdapter(this@ActivityProductList, products)
+                halwajaatAdapter = HalwajaatAdapter(this@ActivityHalwajaat, products)
 
-                products_recyclerview.adapter = productAdapter
+                products_recyclerview.adapter = halwajaatAdapter
 
-//                productAdapter.notifyDataSetChanged()
+//                halwajaatAdapter.notifyDataSetChanged()
 
             }
 

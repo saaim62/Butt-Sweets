@@ -41,11 +41,8 @@ class ShoppingCart {
                 } else {
                     cart.remove(targetItem)
                 }
-
             }
-
             saveCart(cart)
-
         }
 
         fun saveCart(cart: MutableList<CartItem>) {
@@ -65,6 +62,17 @@ class ShoppingCart {
 
             return cartSize
         }
-    }
 
+        fun getEachShoppingCartSize(): Int {
+            var qty = 0
+            getCart().forEach {
+                qty = it.quantity
+            }
+            return qty
+        }
+
+        fun distroy() {
+            Paper.book().destroy()
+        }
+    }
 }

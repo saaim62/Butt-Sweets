@@ -74,7 +74,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/tv_size"
+                android:id="@+id/product_quantity"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -169,9 +169,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_size"
-                app:layout_constraintStart_toEndOf="@+id/tv_size"
-                app:layout_constraintTop_toTopOf="@+id/tv_size" />
+                app:layout_constraintBottom_toBottomOf="@+id/product_quantity"
+                app:layout_constraintStart_toEndOf="@+id/product_quantity"
+                app:layout_constraintTop_toTopOf="@+id/product_quantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

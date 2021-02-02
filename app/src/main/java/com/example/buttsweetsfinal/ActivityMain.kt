@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.GridView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.gridhome.*
@@ -34,6 +35,10 @@ class ActivityMain : AppCompatActivity() {
         video()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        distroy()
+    }
     private fun bottomNav() {
         val bottomNavigationView: BottomNavigationView =
             findViewById<View>(R.id.bottomNavigationView) as BottomNavigationView
@@ -95,7 +100,7 @@ class ActivityMain : AppCompatActivity() {
             startActivity(
                 Intent(
                     this@ActivityMain,
-                    ActivityProductList::class.java
+                    ActivityCake::class.java
                 )
             )
         }
@@ -104,49 +109,49 @@ class ActivityMain : AppCompatActivity() {
 //            fm.beginTransaction().replace(R.id.container, CakesFragment()).commit()
 //        }
 
-//        cardImgSamosa.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivitySamosa::class.java
-//                )
-//            )
-//        }
-//
-//        cardImgSweet.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivitySweets::class.java
-//                )
-//            )
-//        }
-//
-//        cardImgHalwa.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivityHalwajaat::class.java
-//                )
-//            )
-//        }
-//
-//        cardImgInstant.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivityInstantBake::class.java
-//                )
-//            )
-//        }
-//
-//        cardImgTvc.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivityTvc::class.java
-//                )
-//            )
-//        }
+        cardImgSamosa.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@ActivityMain,
+                    ActivitySamosa::class.java
+                )
+            )
+        }
+
+        cardImgSweet.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@ActivityMain,
+                    ActivitySweets::class.java
+                )
+            )
+        }
+
+        cardImgHalwa.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@ActivityMain,
+                    ActivityHalwajaat::class.java
+                )
+            )
+        }
+
+        cardImgInstant.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@ActivityMain,
+                    ActivityInstantBake::class.java
+                )
+            )
+        }
+
+        cardImgTvc.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@ActivityMain,
+                    ActivityTvc::class.java
+                )
+            )
+        }
     }
 }
