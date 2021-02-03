@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.buttsweetsfinal">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:hardwareAccelerated="false"
+        android:icon="@drawable/buttlogo"
+        android:label="@string/app_name"
         android:largeHeap="true"
+        android:roundIcon="@drawable/buttlogo"
+        android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".ActivitySignUp" />
         <activity android:name=".SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShoppingCartActivity"/>
-        <activity android:name=".ActivityMain"/>
-        <activity android:name=".ActivitySamosa"/>
-        <activity android:name=".ActivitySweets"/>
-        <activity android:name=".ActivityTvc"/>
-        <activity android:name=".ActivityInstantBake"/>
-        <activity android:name=".ActivityHalwajaat"/>
+        <activity android:name=".ActivityLogin" /> <!-- android:excludeFromRecents="true" -->
+        <!-- android:theme="@android:style/Theme.Dialog"/> -->
+        <activity android:name=".ShoppingCartActivity" />
+        <activity android:name=".ActivityMain" />
+        <activity android:name=".ActivitySamosa" />
+        <activity android:name=".ActivitySweets" />
+        <activity android:name=".ActivityTvc" />
+        <activity android:name=".ActivityInstantBake" />
+        <activity android:name=".ActivityHalwajaat" />
         <activity android:name=".ActivityMenu" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ActivityCake" />
     </application>
-
 
 </manifest>

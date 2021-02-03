@@ -12,6 +12,7 @@ import java.util.*
 
 
 class SplashActivity : Activity() {
+    lateinit var activityCake:ActivityCake
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class SplashActivity : Activity() {
                 }
 
                 override fun onFinish() {
-                    val intent = Intent(this@SplashActivity, ActivityMain::class.java)
+                    val intent = Intent(this@SplashActivity, ActivityLogin::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)

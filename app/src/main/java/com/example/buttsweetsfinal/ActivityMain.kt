@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.GridView
 import android.widget.VideoView
@@ -37,8 +38,9 @@ class ActivityMain : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        distroy()
+//        distroy()
     }
+
     private fun bottomNav() {
         val bottomNavigationView: BottomNavigationView =
             findViewById<View>(R.id.bottomNavigationView) as BottomNavigationView
@@ -61,7 +63,7 @@ class ActivityMain : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.bottomProfile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, UserProfileActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -97,12 +99,24 @@ class ActivityMain : AppCompatActivity() {
             searchBtnClose.visibility = View.GONE
         }
         cardImgCake.setOnClickListener {
-            startActivity(
-                Intent(
+            Handler().postDelayed({
+                val mainIntent = Intent(
                     this@ActivityMain,
                     ActivityCake::class.java
                 )
-            )
+                mainIntent.putExtra("id", "1")
+                startActivity(mainIntent)
+                overridePendingTransition(
+                    R.anim.avatar_slide_in_from_left,
+                    R.anim.avatar_slide_out_to_left
+                )
+            }, 10)
+//            startActivity(
+//                Intent(
+//                    this@ActivityMain,
+//                    ActivityCake::class.java
+//                )
+//            )
         }
 //        cardImgCake.setOnClickListener {
 //            val fm = supportFragmentManager
@@ -110,39 +124,87 @@ class ActivityMain : AppCompatActivity() {
 //        }
 
         cardImgSamosa.setOnClickListener {
-            startActivity(
-                Intent(
+//            startActivity(
+//                Intent(
+//                    this@ActivityMain,
+//                    ActivitySamosa::class.java
+//                )
+//            )
+            Handler().postDelayed({
+                val mainIntent = Intent(
                     this@ActivityMain,
                     ActivitySamosa::class.java
                 )
-            )
+                mainIntent.putExtra("id", "1")
+                startActivity(mainIntent)
+                overridePendingTransition(
+                    R.anim.avatar_slide_in_from_left,
+                    R.anim.avatar_slide_out_to_left
+                )
+            }, 10)
         }
 
         cardImgSweet.setOnClickListener {
-            startActivity(
-                Intent(
+//            startActivity(
+//                Intent(
+//                    this@ActivityMain,
+//                    ActivitySweets::class.java
+//                )
+//            )
+            Handler().postDelayed({
+                val mainIntent = Intent(
                     this@ActivityMain,
                     ActivitySweets::class.java
                 )
-            )
+                mainIntent.putExtra("id", "1")
+                startActivity(mainIntent)
+                overridePendingTransition(
+                    R.anim.avatar_slide_in_from_left,
+                    R.anim.avatar_slide_out_to_left
+                )
+            }, 10)
         }
 
         cardImgHalwa.setOnClickListener {
-            startActivity(
-                Intent(
+//            startActivity(
+//                Intent(
+//                    this@ActivityMain,
+//                    ActivityHalwajaat::class.java
+//                )
+//            )
+            Handler().postDelayed({
+                val mainIntent = Intent(
                     this@ActivityMain,
                     ActivityHalwajaat::class.java
                 )
-            )
+                mainIntent.putExtra("id", "1")
+                startActivity(mainIntent)
+                overridePendingTransition(
+                    R.anim.avatar_slide_in_from_left,
+                    R.anim.avatar_slide_out_to_left
+                )
+            }, 10)
         }
 
         cardImgInstant.setOnClickListener {
-            startActivity(
-                Intent(
+//            startActivity(
+//                Intent(
+//                    this@ActivityMain,
+//                    ActivityInstantBake::class.java
+//                )
+//            )
+            Handler().postDelayed({
+                val mainIntent = Intent(
                     this@ActivityMain,
                     ActivityInstantBake::class.java
                 )
-            )
+                mainIntent.putExtra("id", "1")
+                startActivity(mainIntent)
+                overridePendingTransition(
+                    R.anim.avatar_slide_in_from_left,
+                    R.anim.avatar_slide_out_to_left
+                )
+            }, 10)
         }
 
         cardImgTvc.setOnClickListener {

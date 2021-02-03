@@ -39,7 +39,7 @@ class ActivityCake : AppCompatActivity() {
         swipeRefreshLayout.isRefreshing = true
 
         swipeRefreshLayout.setOnRefreshListener {
-            getProducts()
+//            getProducts()
         }
 
 //        val layoutManager = StaggeredGridLayoutManager(this, Lin)
@@ -53,7 +53,7 @@ class ActivityCake : AppCompatActivity() {
 
         cart_size.text = ShoppingCart.getShoppingCartSize().toString()
 
-        getProducts()
+//        getProducts()
 
 
         showCart.setOnClickListener {

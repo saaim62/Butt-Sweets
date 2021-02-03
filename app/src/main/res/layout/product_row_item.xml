@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="2dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="2dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardList"
@@ -75,31 +75,31 @@
         app:layout_constraintTop_toTopOf="@+id/tvRs"
         tools:text="800" />
 
-<!--    <Button-->
-<!--        android:id="@+id/addToCart"-->
-<!--        android:layout_width="180dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:background="@drawable/btn_shape"-->
-<!--        android:fontFamily="serif-monospace"-->
-<!--        android:gravity="center"-->
-<!--        android:padding="5dp"-->
-<!--        android:text="add to cart"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/whiteTextColor"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textStyle="bold"-->
-<!--        tools:layout_editor_absoluteX="192dp"-->
-<!--        tools:layout_editor_absoluteY="125dp" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/addToCart"-->
+    <!--        android:layout_width="180dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:background="@drawable/btn_shape"-->
+    <!--        android:fontFamily="serif-monospace"-->
+    <!--        android:gravity="center"-->
+    <!--        android:padding="5dp"-->
+    <!--        android:text="add to cart"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="@color/whiteTextColor"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        tools:layout_editor_absoluteX="192dp"-->
+    <!--        tools:layout_editor_absoluteY="125dp" />-->
 
     <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:background="#9D0B0F"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#9D0B0F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--    <include-->
     <!--        android:id="@+id/includeCounter"-->
@@ -187,15 +187,15 @@
         app:layout_constraintStart_toEndOf="@+id/cardList" />
 
     <TextView
-            android:id="@+id/tvRs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Rs:"
-            android:textColor="#9D0B0F"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/tvQty"
-            app:layout_constraintTop_toBottomOf="@+id/product_name" />
+        android:id="@+id/tvRs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Rs:"
+        android:textColor="#9D0B0F"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvQty"
+        app:layout_constraintTop_toBottomOf="@+id/product_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
