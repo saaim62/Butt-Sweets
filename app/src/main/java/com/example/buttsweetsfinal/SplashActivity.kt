@@ -50,7 +50,7 @@ class SplashActivity : Activity() {
                 }
 
                 override fun onFinish() {
-                    val intent = Intent(this@SplashActivity, ActivityLogin::class.java)
+                    val intent = Intent(this@SplashActivity, ActivityMain::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)

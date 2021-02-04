@@ -12,6 +12,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object APIConfig {
 
     val BASE_URL = "https://buttsweets.com/wp-json/wc/v2/"
+//    val BASE_URL = "https://api.mocki.io/v1/7ab8ba49/"
 
     private var retrofit: Retrofit? = null
     val cred = Credentials.basic(

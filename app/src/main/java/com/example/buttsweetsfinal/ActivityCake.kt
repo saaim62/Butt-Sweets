@@ -39,7 +39,7 @@ class ActivityCake : AppCompatActivity() {
         swipeRefreshLayout.isRefreshing = true
 
         swipeRefreshLayout.setOnRefreshListener {
-//            getProducts()
+            getProducts()
         }
 
 //        val layoutManager = StaggeredGridLayoutManager(this, Lin)
@@ -53,7 +53,7 @@ class ActivityCake : AppCompatActivity() {
 
         cart_size.text = ShoppingCart.getShoppingCartSize().toString()
 
-//        getProducts()
+        getProducts()
 
 
         showCart.setOnClickListener {
@@ -67,30 +67,19 @@ class ActivityCake : AppCompatActivity() {
     fun getProducts() {
 
         apiService.getCakes().enqueue(object : retrofit2.Callback<List<Product>> {
+            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+                swipeRefreshLayout.isRefreshing = false
+//                swipeRefreshLayout.isEnabled = false
+                products = response.body()!!
+                cakeAdapter = CakeAdapter(this@ActivityCake, products)
+                products_recyclerview.adapter = cakeAdapter
+//                cakeAdapter.notifyDataSetChanged()
+            }
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-
                 print(t.message)
                 t.message?.let { Log.d("Data error", it) }
                 Toast.makeText(this@ActivityCake, t.message, Toast.LENGTH_SHORT).show()
-
             }
-
-            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
-
-                swipeRefreshLayout.isRefreshing = false
-//                swipeRefreshLayout.isEnabled = false
-
-                products = response.body()!!
-
-                cakeAdapter = CakeAdapter(this@ActivityCake, products)
-
-                products_recyclerview.adapter = cakeAdapter
-
-//                cakeAdapter.notifyDataSetChanged()
-
-            }
-
         })
     }
-
 }

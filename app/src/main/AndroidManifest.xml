@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".UserProfileActivity" />
-        <activity android:name=".ActivitySignUp" />
+
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityLogin" /> <!-- android:excludeFromRecents="true" -->
-        <!-- android:theme="@android:style/Theme.Dialog"/> -->
+        <activity
+            android:name=".ActivitySignUp"
+            android:excludeFromRecents="true"
+            android:theme="@style/NoTitleDialog" />
+        <activity
+            android:name=".ActivityLogin"
+            android:excludeFromRecents="true"
+            android:theme="@style/NoTitleDialog" />
         <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".ActivityMain" />
         <activity android:name=".ActivitySamosa" />

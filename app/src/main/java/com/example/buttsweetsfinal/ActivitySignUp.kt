@@ -22,6 +22,9 @@ class ActivitySignUp : AppCompatActivity() {
         link_login?.setOnClickListener {
             finish()
         }
+        btn_skip?.setOnClickListener {
+            finish()
+        }
     }
 
     fun signup() {

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
 import com.example.buttsweetsfinal.adapters.ShoppingCartAdapter
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
@@ -57,6 +58,11 @@ class ShoppingCartActivity : AppCompatActivity() {
         checkOutBtn.setOnClickListener {
             showDialog(it)
         }
+
+        fabCartClearBtn.setOnClickListener {
+            distroy()
+        }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)

@@ -21,9 +21,9 @@ class ActivityLogin : AppCompatActivity() {
     private val TAG = "ActivityLogin"
     private val REQUEST_SIGNUP = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_login)
         ButterKnife.inject(this)
         btn_login?.setOnClickListener { login() }
@@ -35,8 +35,8 @@ class ActivityLogin : AppCompatActivity() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.window?.setLayout(1400, 1800)
         btn_skip?.setOnClickListener {
-            val intent = Intent(applicationContext, ActivityMain::class.java)
-            startActivity(intent)
+//            val intent = Intent(applicationContext, ActivityMain::class.java)
+//            startActivity(intent)
             finish()
         }
     }

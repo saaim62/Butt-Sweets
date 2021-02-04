@@ -8,6 +8,7 @@ interface APIService {
 
     @Headers("Content-Type: application/json", "Accept: application/json")
     @GET("products?category=58&per_page=100")
+//    @GET("buttsweets/cakes")
     fun getCakes(
     ): Call<List<Product>>
 
