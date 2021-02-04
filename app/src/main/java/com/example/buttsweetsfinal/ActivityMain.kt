@@ -55,6 +55,7 @@ class ActivityMain : AppCompatActivity() {
                 R.id.bottomHome -> {
                     val intent = Intent(this, ActivityMain::class.java)
                     startActivity(intent)
+                    R.id.bottomHome
                 }
                 R.id.bottomMenu -> {
                     val intent = Intent(this, ActivityMenu::class.java)

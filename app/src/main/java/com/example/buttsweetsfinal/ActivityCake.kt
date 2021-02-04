@@ -1,15 +1,16 @@
 package com.example.buttsweetsfinal
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import android.util.Log
 import android.widget.Toast
-import com.example.buttsweetsfinal.network.Product
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.buttsweetsfinal.adapters.CakeAdapter
 import com.example.buttsweetsfinal.network.APIConfig
 import com.example.buttsweetsfinal.network.APIService
-import com.example.buttsweetsfinal.adapters.CakeAdapter
+import com.example.buttsweetsfinal.network.Product
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_cake.*
 import retrofit2.Call
@@ -19,7 +20,6 @@ class ActivityCake : AppCompatActivity() {
 
     private lateinit var apiService: APIService
     private lateinit var cakeAdapter: CakeAdapter
-
     private var products = listOf<Product>()
 //    val APIConfig = APIConfig.
 
@@ -28,7 +28,6 @@ class ActivityCake : AppCompatActivity() {
         Paper.init(this)
 
         setContentView(R.layout.activity_cake)
-
 
 //        setSupportActionBar(toolbar)
         apiService = APIConfig.getRetrofitClient(this).create(APIService::class.java)
@@ -44,11 +43,7 @@ class ActivityCake : AppCompatActivity() {
 
 //        val layoutManager = StaggeredGridLayoutManager(this, Lin)
 
-        products_recyclerview.layoutManager =
-            androidx.recyclerview.widget.StaggeredGridLayoutManager(
-                1,
-                androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
-            )
+        products_recyclerview.layoutManager = LinearLayoutManager(this)
 
 
         cart_size.text = ShoppingCart.getShoppingCartSize().toString()
@@ -56,7 +51,7 @@ class ActivityCake : AppCompatActivity() {
         getProducts()
 
 
-        showCart.setOnClickListener {
+        basketButton.setOnClickListener {
 
             startActivity(Intent(this, ShoppingCartActivity::class.java))
         }
@@ -75,6 +70,7 @@ class ActivityCake : AppCompatActivity() {
                 products_recyclerview.adapter = cakeAdapter
 //                cakeAdapter.notifyDataSetChanged()
             }
+
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 print(t.message)
                 t.message?.let { Log.d("Data error", it) }
