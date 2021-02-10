@@ -3,6 +3,7 @@ package com.example.buttsweetsfinal
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,6 +14,7 @@ import com.example.buttsweetsfinal.network.APIService
 import com.example.buttsweetsfinal.network.Product
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_cake.*
+import kotlinx.android.synthetic.main.product_row_item.*
 import retrofit2.Call
 import retrofit2.Response
 

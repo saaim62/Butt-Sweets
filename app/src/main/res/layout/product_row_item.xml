@@ -32,6 +32,7 @@
             android:id="@+id/product_image"
             android:layout_width="180dp"
             android:layout_height="160dp"
+            android:background="@drawable/shape_react01"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toTopOf="@+id/product_name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,9 +46,11 @@
         android:id="@+id/product_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:paddingStart="10dp"
+        android:paddingLeft="10dp"
         android:paddingEnd="10dp"
         android:singleLine="false"
         android:textAlignment="center"
@@ -55,6 +58,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintLeft_toRightOf="@+id/cardList"
         app:layout_constraintTop_toTopOf="@+id/cardList"
         tools:text="Almond syrup cake" />
 
@@ -91,6 +95,22 @@
     <!--        tools:layout_editor_absoluteX="192dp"-->
     <!--        tools:layout_editor_absoluteY="125dp" />-->
 
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:id="@+id/product_size_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:ms_arrow_tint="#9D0B0F"
+        app:ms_background_color="@color/whiteTextColor"
+        app:ms_text_color="#9D0B0F"
+        app:ms_dropdown_height="100dp"
+        app:ms_dropdown_max_height="120dp"
+        app:layout_goneMarginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvSize"
+        app:layout_constraintTop_toTopOf="@+id/tvSize" />
+
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
@@ -116,11 +136,12 @@
         android:id="@+id/constraintLayout"
         android:layout_width="130dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
         android:background="@drawable/counter_rounded_shape"
         app:layout_constraintBottom_toBottomOf="@+id/tvQty"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvQty"
         app:layout_constraintTop_toTopOf="@+id/tvQty">
 
         <TextView
@@ -175,8 +196,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:text="Qty: "
         android:textColor="#9D0B0F"
@@ -197,5 +216,34 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tvQty"
         app:layout_constraintTop_toBottomOf="@+id/product_name" />
+
+    <TextView
+        android:id="@+id/tvSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Size:"
+        android:textColor="#9D0B0F"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/tvRs"
+        app:layout_constraintStart_toStartOf="@+id/tvRs"
+        app:layout_constraintTop_toBottomOf="@+id/tvRs" />
+
+    <TextView
+        android:id="@+id/tvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/product_name"
+        app:layout_constraintStart_toEndOf="@+id/cardList"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

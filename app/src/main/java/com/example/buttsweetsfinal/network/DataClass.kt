@@ -17,5 +17,8 @@ data class Product(
     var price: String? = null,
 
     @SerializedName("images")
-    var images: List<Image> = arrayListOf()
+    var images: List<Image> = arrayListOf(),
+
+    @SerializedName("attributes")
+    var attributes: List<Attribute> = arrayListOf()
 )

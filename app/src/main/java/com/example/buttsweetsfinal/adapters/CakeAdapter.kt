@@ -2,6 +2,7 @@ package com.example.buttsweetsfinal.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +15,22 @@ import com.example.buttsweetsfinal.R
 import com.example.buttsweetsfinal.ShoppingCart
 import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
 import com.example.buttsweetsfinal.ShoppingCart.Companion.getEachShoppingCartSize
+import com.example.buttsweetsfinal.network.APIService
 import com.example.buttsweetsfinal.network.CartItem
 import com.example.buttsweetsfinal.network.Product
 import com.google.android.material.snackbar.Snackbar
+import com.jaredrummler.materialspinner.MaterialSpinner
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.activity_cake.*
+import kotlinx.android.synthetic.main.product_row_item.*
 import kotlinx.android.synthetic.main.product_row_item.view.*
+import retrofit2.Call
+import retrofit2.Response
+
 
 class CakeAdapter(var context: Context, var products: List<Product> = arrayListOf()) :
-        RecyclerView.Adapter<CakeAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CakeAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
 
         val view = LayoutInflater.from(context).inflate(R.layout.product_row_item, parent, false)
@@ -40,19 +47,21 @@ class CakeAdapter(var context: Context, var products: List<Product> = arrayListO
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private lateinit var apiService: APIService
         var product_name: TextView = itemView.findViewById(R.id.product_name)
 
         @SuppressLint("CheckResult")
         fun bindProduct(product: Product) {
-
+            itemView. product_size_spinner.visibility = View.VISIBLE
+            itemView.tvSize.visibility = View.VISIBLE
 
             itemView.product_name.text = product.name
             itemView.product_price.text = product.price
+//            product_size_spinner = product.attributes[0].options.toString()
 
-//            Picasso.get().load(product.images[0].src).fit().into(itemView.product_image)
             Glide.with(product_name.context)
-                    .load(product.images[0].src)
-                    .into(itemView.product_image)
+                .load(product.images[0].src)
+                .into(itemView.product_image)
 
             //                val products = mutableListOf<Product>()
 //                products.add(product)
@@ -60,6 +69,52 @@ class CakeAdapter(var context: Context, var products: List<Product> = arrayListO
 
 //                ShoppingCart.addItem(item)
 
+            itemView.product_size_spinner.setItems("1 Pound", "2 Pound")
+            itemView.product_size_spinner.setOnItemSelectedListener { view, position, id, item ->
+                when (item) {
+                    "1 Pound" -> {
+                        var price:String? = null
+                        val x: String
+                        val value:Int = 2
+                       x = product.id?.plus(value).toString()
+                        Toast.makeText(itemView.context, x, Toast.LENGTH_SHORT).show()
+                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {
+                            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+                                price = response.body().toString()
+                            }
+
+                            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+                                print(t.message)
+                                t.message?.let { Log.d("Data error", it) }
+                                Toast.makeText(itemView.context, t.message, Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                    }
+                    "2 Pound" -> {
+                        var price:String? = null
+                        val x: String
+                        val value:Int = 3
+                        x = product.id?.plus(value).toString()
+                        Toast.makeText(itemView.context, x, Toast.LENGTH_SHORT).show()
+                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {
+                            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+                                price = response.body().toString()
+                            }
+
+                            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+                                print(t.message)
+                                t.message?.let { Log.d("Data error", it) }
+                                Toast.makeText(itemView.context, t.message, Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                    }
+                }
+                Snackbar.make(
+                    view,
+                    "Clicked $item",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
 
             Observable.create(ObservableOnSubscribe<MutableList<CartItem>> {
 
@@ -69,24 +124,24 @@ class CakeAdapter(var context: Context, var products: List<Product> = arrayListO
                     ShoppingCart.addItem(item)
                     //notfy users
                     Snackbar.make(
-                            (itemView.context as ActivityCake).coordinator,
-                            "${product.name} added to your cart",
-                            Snackbar.LENGTH_LONG
+                        (itemView.context as ActivityCake).coordinator,
+                        "${product.name} added to your cart",
+                        Snackbar.LENGTH_LONG
                     ).show()
                     it.onNext(ShoppingCart.getCart())
-                        itemView.tvValCounter.text = getEachShoppingCartSize().toString()
+                    itemView.tvValCounter.text = getEachShoppingCartSize().toString()
                 }
 
                 itemView.removeItem.setOnClickListener { view ->
                     val item = CartItem(product)
                     ShoppingCart.removeItem(item, itemView.context)
                     Snackbar.make(
-                            (itemView.context as ActivityCake).coordinator,
-                            "${product.name} removed from your cart",
-                            Snackbar.LENGTH_LONG
+                        (itemView.context as ActivityCake).coordinator,
+                        "${product.name} removed from your cart",
+                        Snackbar.LENGTH_LONG
                     ).show()
                     it.onNext(ShoppingCart.getCart())
-                        itemView.tvValCounter.text = getEachShoppingCartSize().toString()
+                    itemView.tvValCounter.text = getEachShoppingCartSize().toString()
                 }
 
 
@@ -111,5 +166,51 @@ class CakeAdapter(var context: Context, var products: List<Product> = arrayListO
 
         }
     }
+//    fun areAllItemsEnabled(): Boolean {
+//        return true
+//    }
+//
+//    fun isEnabled(position: Int): Boolean {
+//        return true
+//    }
+//
+//    fun registerDataSetObserver(observer: DataSetObserver?) {}
+//
+//    fun unregisterDataSetObserver(observer: DataSetObserver?) {}
+//
+//    fun getCount(): Int {
+//        return data.size
+//    }
+//
+//    fun getItem(position: Int): String? {
+//        return data.get(position)
+//    }
+//
+//    fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+//        var convertView = convertView
+//        val holder: SpinnerViewHolder
+//        if (convertView == null) {
+//            convertView = TextView(mContext)
+//            holder = SpinnerViewHolder()
+//            holder.textView = convertView
+//            convertView.setTag(holder)
+//        } else {
+//            holder = convertView.tag as SpinnerViewHolder
+//        }
+//        holder.textView!!.text = getItem(position)
+//        return convertView
+//    }
+//
+//    fun getViewTypeCount(): Int {
+//        return 0
+//    }
+//
+//    fun isEmpty(): Boolean {
+//        return false
+//    }
+//
+//    class SpinnerViewHolder {
+//        var textView: TextView? = null
+//    }
 
 }

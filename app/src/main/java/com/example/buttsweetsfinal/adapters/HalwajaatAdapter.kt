@@ -20,7 +20,6 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.activity_halwajaat.*
-import kotlinx.android.synthetic.main.activity_samosa.coordinator
 import kotlinx.android.synthetic.main.product_row_item.view.*
 
 class HalwajaatAdapter(var context: Context, var products: List<Product> = arrayListOf()) :

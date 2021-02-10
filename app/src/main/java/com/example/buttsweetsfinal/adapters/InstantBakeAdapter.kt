@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.buttsweetsfinal.ActivityInstantBake
-import com.example.buttsweetsfinal.ActivitySamosa
 import com.example.buttsweetsfinal.R
 import com.example.buttsweetsfinal.ShoppingCart
 import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
@@ -21,8 +20,6 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.activity_instantbake.*
-import kotlinx.android.synthetic.main.activity_samosa.*
-import kotlinx.android.synthetic.main.activity_samosa.coordinator
 import kotlinx.android.synthetic.main.product_row_item.view.*
 
 class InstantBakeAdapter(var context: Context, var products: List<Product> = arrayListOf()) :
@@ -50,6 +47,7 @@ class InstantBakeAdapter(var context: Context, var products: List<Product> = arr
 
 
             itemView.product_name.text = product.name
+            itemView.tvId.text = product.id.toString()
             itemView.product_price.text = product.price
 
 //            Picasso.get().load(product.images[0].src).fit().into(itemView.product_image)
