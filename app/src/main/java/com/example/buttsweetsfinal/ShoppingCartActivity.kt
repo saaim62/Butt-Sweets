@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -56,7 +57,9 @@ class ShoppingCartActivity : AppCompatActivity() {
             androidx.recyclerview.widget.LinearLayoutManager(this)
 
 
-        var totalPrice = getCart().fold(0.toDouble()) { acc, cartItem -> acc + cartItem.quantity.times(cartItem.product.price!!.toDouble()) }
+        var totalPrice = getCart().fold(0.toDouble()) { acc, cartItem -> acc + cartItem.quantity.times(
+            cartItem.product.price!!.toDouble()
+        ) }
 
         val name = getCart().fold(String()) { acc, cartItem -> acc +"\n"+ cartItem.product.name +"   qty: "+ cartItem.quantity +"  per piece price: "+ cartItem.product.price +"\n"}
 
@@ -69,8 +72,14 @@ class ShoppingCartActivity : AppCompatActivity() {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setCancelable(false)
             dialog.setContentView(R.layout.dialogbrand_layout)
-            dialog.window?.setLayout(1400, 1800)
-            dialog.window?.setElevation(20F)
+//            dialog.window?.setLayout(1400, 1800)
+//            dialog.window?.setElevation(20F)
+            val lp = WindowManager.LayoutParams()
+            lp.copyFrom(dialog.window?.attributes)
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+            dialog.show()
+            dialog.window?.attributes = lp
 //            val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
 //            val myEdit = sharedPreferences.edit()
 //            myEdit.putString("name", etName.text.toString())
@@ -96,7 +105,10 @@ class ShoppingCartActivity : AppCompatActivity() {
                 i.type = "message/rfc822"
                 i.putExtra(Intent.EXTRA_EMAIL, arrayOf("saaim62@gmail.com"))
                 i.putExtra(Intent.EXTRA_SUBJECT, "User Order")
-                i.putExtra(Intent.EXTRA_TEXT, "[\n user data:\n name: ${"userName"} \n address: ${"userAddress"} \n contact No: ${"userContactNo"} \n\n [\nproduct: ${name} \n\n\n total price: ${totalPrice}\n]")
+                i.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "[\n user data:\n name: ${"userName"} \n address: ${"userAddress"} \n contact No: ${"userContactNo"} \n\n [\nproduct: ${name} \n\n\n total price: ${totalPrice}\n]"
+                )
                 try {
                     startActivity(Intent.createChooser(i, "Send mail..."))
                 } catch (ex: ActivityNotFoundException) {

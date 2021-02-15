@@ -78,17 +78,17 @@ class CakeAdapter(var context: Context, var products: List<Product> = arrayListO
                         val value:Int = 2
                        x = product.id?.plus(value).toString()
                         Toast.makeText(itemView.context, x, Toast.LENGTH_SHORT).show()
-                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {
-                            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
-                                price = response.body().toString()
-                            }
-
-                            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-                                print(t.message)
-                                t.message?.let { Log.d("Data error", it) }
-                                Toast.makeText(itemView.context, t.message, Toast.LENGTH_SHORT).show()
-                            }
-                        })
+//                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {
+//                            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+//                                price = response.body().toString()
+//                            }
+//
+//                            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+//                                print(t.message)
+//                                t.message?.let { Log.d("Data error", it) }
+//                                Toast.makeText(itemView.context, t.message, Toast.LENGTH_SHORT).show()
+//                            }
+//                        })
                     }
                     "2 Pound" -> {
                         var price:String? = null
@@ -96,17 +96,17 @@ class CakeAdapter(var context: Context, var products: List<Product> = arrayListO
                         val value:Int = 3
                         x = product.id?.plus(value).toString()
                         Toast.makeText(itemView.context, x, Toast.LENGTH_SHORT).show()
-                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {
-                            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
-                                price = response.body().toString()
-                            }
-
-                            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-                                print(t.message)
-                                t.message?.let { Log.d("Data error", it) }
-                                Toast.makeText(itemView.context, t.message, Toast.LENGTH_SHORT).show()
-                            }
-                        })
+//                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {
+//                            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+//                                price = response.body().toString()
+//                            }
+//
+//                            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+//                                print(t.message)
+//                                t.message?.let { Log.d("Data error", it) }
+//                                Toast.makeText(itemView.context, t.message, Toast.LENGTH_SHORT).show()
+//                            }
+//                        })
                     }
                 }
                 Snackbar.make(
