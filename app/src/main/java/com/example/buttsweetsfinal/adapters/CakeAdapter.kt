@@ -2,7 +2,6 @@ package com.example.buttsweetsfinal.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,14 +18,10 @@ import com.example.buttsweetsfinal.network.APIService
 import com.example.buttsweetsfinal.network.CartItem
 import com.example.buttsweetsfinal.network.Product
 import com.google.android.material.snackbar.Snackbar
-import com.jaredrummler.materialspinner.MaterialSpinner
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.activity_cake.*
-import kotlinx.android.synthetic.main.product_row_item.*
 import kotlinx.android.synthetic.main.product_row_item.view.*
-import retrofit2.Call
-import retrofit2.Response
 
 
 class CakeAdapter(var context: Context, var products: List<Product> = arrayListOf()) :
@@ -143,27 +138,17 @@ class CakeAdapter(var context: Context, var products: List<Product> = arrayListO
                     it.onNext(ShoppingCart.getCart())
                     itemView.tvValCounter.text = getEachShoppingCartSize().toString()
                 }
-
-
             }).subscribe { cart ->
-
                 var quantity = 0
-
                 cart.forEach { cartItem ->
-
                     quantity += cartItem.quantity
                     if (quantity == 0) {
                         distroy()
                     }
                 }
-
-
                 (itemView.context as ActivityCake).cart_size.text = quantity.toString()
                 Toast.makeText(itemView.context, "Cart size $quantity", Toast.LENGTH_SHORT).show()
-
-
             }
-
         }
     }
 //    fun areAllItemsEnabled(): Boolean {

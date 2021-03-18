@@ -17,7 +17,7 @@ class ActivitySignUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        ButterKnife.inject(this)
+//        ButterKnife.inject(this)
         btn_signup?.setOnClickListener { signup() }
         link_login?.setOnClickListener {
             finish()

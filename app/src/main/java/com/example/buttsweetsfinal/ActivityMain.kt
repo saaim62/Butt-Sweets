@@ -10,6 +10,7 @@ import android.widget.GridView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
+import com.example.buttsweetsfinal.assetsTab.AssetsMainFragmentTab
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.gridhome.*
@@ -93,21 +94,20 @@ class ActivityMain : AppCompatActivity() {
     }
 
     private fun onClickListeners() {
-        searchView.setOnClickListener {
-            etSearch.visibility = View.VISIBLE
-            searchBtnClose.visibility = View.VISIBLE
-        }
-        searchBtnClose.setOnClickListener {
-            etSearch.visibility = View.GONE
-            searchBtnClose.visibility = View.GONE
-        }
+//        searchView.setOnClickListener {
+//            etSearch.visibility = View.VISIBLE
+//            searchBtnClose.visibility = View.VISIBLE
+//        }
+//        searchBtnClose.setOnClickListener {
+//            etSearch.visibility = View.GONE
+//            searchBtnClose.visibility = View.GONE
+//        }
         cardImgCake.setOnClickListener {
             Handler().postDelayed({
                 val mainIntent = Intent(
                     this@ActivityMain,
                     ActivityCake::class.java
                 )
-                mainIntent.putExtra("id", "1")
                 startActivity(mainIntent)
                 overridePendingTransition(
                     R.anim.avatar_slide_in_from_left,
@@ -133,18 +133,18 @@ class ActivityMain : AppCompatActivity() {
 //                    ActivitySamosa::class.java
 //                )
 //            )
-            Handler().postDelayed({
-                val mainIntent = Intent(
-                    this@ActivityMain,
-                    ActivitySamosa::class.java
-                )
-                mainIntent.putExtra("id", "1")
-                startActivity(mainIntent)
-                overridePendingTransition(
-                    R.anim.avatar_slide_in_from_left,
-                    R.anim.avatar_slide_out_to_left
-                )
-            }, 10)
+//            Handler().postDelayed({
+//                val mainIntent = Intent(
+//                    this@ActivityMain,
+//                    ActivitySamosa::class.java
+//                )
+//                startActivity(mainIntent)
+//                overridePendingTransition(
+//                    R.anim.avatar_slide_in_from_left,
+//                    R.anim.avatar_slide_out_to_left
+//                )
+//            }, 10)
+            switchToFragmentAssets()
         }
 
         cardImgSweet.setOnClickListener {
@@ -159,7 +159,6 @@ class ActivityMain : AppCompatActivity() {
                     this@ActivityMain,
                     ActivitySweets::class.java
                 )
-                mainIntent.putExtra("id", "1")
                 startActivity(mainIntent)
                 overridePendingTransition(
                     R.anim.avatar_slide_in_from_left,
@@ -180,7 +179,6 @@ class ActivityMain : AppCompatActivity() {
                     this@ActivityMain,
                     ActivityHalwajaat::class.java
                 )
-                mainIntent.putExtra("id", "1")
                 startActivity(mainIntent)
                 overridePendingTransition(
                     R.anim.avatar_slide_in_from_left,
@@ -201,7 +199,6 @@ class ActivityMain : AppCompatActivity() {
                     this@ActivityMain,
                     ActivityInstantBake::class.java
                 )
-                mainIntent.putExtra("id", "1")
                 startActivity(mainIntent)
                 overridePendingTransition(
                     R.anim.avatar_slide_in_from_left,
@@ -218,5 +215,14 @@ class ActivityMain : AppCompatActivity() {
                 )
             )
         }
+    }
+    private fun switchToFragmentAssets() {
+        val manager = supportFragmentManager
+        manager.beginTransaction()
+            .replace(R.id.activity_home_page, AssetsMainFragmentTab(), FRAGMENT_TAG_ASSETS)
+            .commitAllowingStateLoss()
+    }
+    companion object {
+        private const val FRAGMENT_TAG_ASSETS = "fragment_tag_assets"
     }
 }

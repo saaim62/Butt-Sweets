@@ -25,7 +25,7 @@ class ActivityLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_login)
-        ButterKnife.inject(this)
+//        ButterKnife.inject(this)
         btn_login?.setOnClickListener { login() }
         link_signup!!.setOnClickListener {
             val intent = Intent(applicationContext, ActivitySignUp::class.java)

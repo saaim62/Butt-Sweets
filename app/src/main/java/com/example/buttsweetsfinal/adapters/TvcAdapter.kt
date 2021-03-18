@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.buttsweetsfinal.ActivitySamosa
 import com.example.buttsweetsfinal.ActivityTvc
 import com.example.buttsweetsfinal.R
 import com.example.buttsweetsfinal.ShoppingCart
@@ -21,23 +20,18 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.activity_tvc.*
-import kotlinx.android.synthetic.main.activity_tvc.coordinator
-import kotlinx.android.synthetic.main.activity_samosa.*
 import kotlinx.android.synthetic.main.product_row_item.view.*
 
 class TvcAdapter(var context: Context, var products: List<Product> = arrayListOf()) :
-        RecyclerView.Adapter<TvcAdapter.ViewHolder>() {
+    RecyclerView.Adapter<TvcAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
-
         val view = LayoutInflater.from(context).inflate(R.layout.product_row_item, parent, false)
         return ViewHolder(view)
-
     }
 
     override fun getItemCount(): Int = products.size
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
         viewHolder.bindProduct(products[position])
         (context as ActivityTvc).coordinator
     }
@@ -47,72 +41,52 @@ class TvcAdapter(var context: Context, var products: List<Product> = arrayListOf
 
         @SuppressLint("CheckResult")
         fun bindProduct(product: Product) {
-
-
             itemView.product_name.text = product.name
             itemView.product_price.text = product.price
-
 //            Picasso.get().load(product.images[0].src).fit().into(itemView.product_image)
             Glide.with(product_name.context)
-                    .load(product.images[0].src)
-                    .into(itemView.product_image)
-
-            //                val products = mutableListOf<Product>()
+                .load(product.images[0].src)
+                .into(itemView.product_image)
+//            val products = mutableListOf<Product>()
 //                products.add(product)
-//
-
 //                ShoppingCart.addItem(item)
-
-
             Observable.create(ObservableOnSubscribe<MutableList<CartItem>> {
-
-
                 itemView.addToCart.setOnClickListener { view ->
                     val item = CartItem(product)
                     ShoppingCart.addItem(item)
                     //notfy users
                     Snackbar.make(
-                            (itemView.context as ActivityTvc).coordinator,
-                            "${product.name} added to your cart",
-                            Snackbar.LENGTH_LONG
+                        (itemView.context as ActivityTvc).coordinator,
+                        "${product.name} added to your cart",
+                        Snackbar.LENGTH_LONG
                     ).show()
                     it.onNext(ShoppingCart.getCart())
-                        itemView.tvValCounter.text = getEachShoppingCartSize().toString()
+                    itemView.tvValCounter.text = getEachShoppingCartSize().toString()
                 }
 
                 itemView.removeItem.setOnClickListener { view ->
                     val item = CartItem(product)
                     ShoppingCart.removeItem(item, itemView.context)
                     Snackbar.make(
-                            (itemView.context as ActivityTvc).coordinator,
-                            "${product.name} removed from your cart",
-                            Snackbar.LENGTH_LONG
+                        (itemView.context as ActivityTvc).coordinator,
+                        "${product.name} removed from your cart",
+                        Snackbar.LENGTH_LONG
                     ).show()
                     it.onNext(ShoppingCart.getCart())
-                        itemView.tvValCounter.text = getEachShoppingCartSize().toString()
+                    itemView.tvValCounter.text = getEachShoppingCartSize().toString()
                 }
-
-
             }).subscribe { cart ->
-
                 var quantity = 0
-
                 cart.forEach { cartItem ->
-
                     quantity += cartItem.quantity
                     if (quantity == 0) {
                         distroy()
                     }
                 }
 
-
                 (itemView.context as ActivityTvc).cart_size_tvc.text = quantity.toString()
                 Toast.makeText(itemView.context, "Cart size $quantity", Toast.LENGTH_SHORT).show()
-
-
             }
-
         }
     }
-
 }

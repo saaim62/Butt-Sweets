@@ -22,50 +22,44 @@ import com.example.buttsweetsfinal.ShoppingCart.Companion.getCart
 import com.example.buttsweetsfinal.adapters.ShoppingCartAdapter
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
-import kotlinx.android.synthetic.main.dialogbrand_layout.*
 
 
 class ShoppingCartActivity : AppCompatActivity() {
 
     lateinit var adapter: ShoppingCartAdapter
 
-
     @SuppressLint("WrongConstant")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_cart)
+
         setSupportActionBar(toolbar)
         Paper.init(this)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material)
         upArrow?.setColorFilter(
             ContextCompat.getColor(this, R.color.colorPrimary),
             PorterDuff.Mode.SRC_ATOP
         )
         supportActionBar?.setHomeAsUpIndicator(upArrow)
-
-
         adapter = ShoppingCartAdapter(this, getCart())
         adapter.notifyDataSetChanged()
-
         shopping_cart_recyclerView.adapter = adapter
-
         shopping_cart_recyclerView.layoutManager =
             androidx.recyclerview.widget.LinearLayoutManager(this)
 
+        val totalPrice = getCart().fold(0.toDouble()) { acc, cartItem ->
+            acc + cartItem.quantity.times(
+                cartItem.product.price!!.toDouble()
+            )
+        }
 
-        var totalPrice = getCart().fold(0.toDouble()) { acc, cartItem -> acc + cartItem.quantity.times(
-            cartItem.product.price!!.toDouble()
-        ) }
-
-        val name = getCart().fold(String()) { acc, cartItem -> acc +"\n"+ cartItem.product.name +"   qty: "+ cartItem.quantity +"  per piece price: "+ cartItem.product.price +"\n"}
-
+        val name =
+            getCart().fold(String()) { acc, cartItem -> acc + "\n" + cartItem.product.name + "   qty: " + cartItem.quantity + "  per piece price: " + cartItem.product.price + "\n" }
 
         total_price.text = "Rs ${totalPrice}"
-
         checkOutBtn.setOnClickListener {
             val dialog = Dialog(this)
             dialog.setTitle("Order Confirm")
@@ -86,15 +80,19 @@ class ShoppingCartActivity : AppCompatActivity() {
 //            myEdit.putString("address", etAddress.text.toString())
 //            myEdit.putString("contact no", etPhoneNo.text.toString())
 //            myEdit.apply()
-//
+
 //            val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
 //            val userName = sh.getString("name", "")
 //            val userAddress = sh.getString("address", "")
 //            val userContactNo = sh.getString("contact No", "")
+//            val etName:TextView = findViewById(R.id.etName)
 
-            val dialogButtonClose: ImageView = dialog.findViewById<View>(R.id.dialCloseBtn) as ImageView
+//            userName?.text= etName.toString()
+            val dialogButtonClose: ImageView =
+                dialog.findViewById<View>(R.id.dialCloseBtn) as ImageView
             dialogButtonClose.setOnClickListener { dialog.dismiss() }
-            val dialogButtonConfirm: Button = dialog.findViewById<View>(R.id.dialConfirmBtn) as Button
+            val dialogButtonConfirm: Button =
+                dialog.findViewById<View>(R.id.dialConfirmBtn) as Button
             dialogButtonConfirm.setOnClickListener {
                 Toast.makeText(
                     this,
@@ -107,7 +105,7 @@ class ShoppingCartActivity : AppCompatActivity() {
                 i.putExtra(Intent.EXTRA_SUBJECT, "User Order")
                 i.putExtra(
                     Intent.EXTRA_TEXT,
-                    "[\n user data:\n name: ${"userName"} \n address: ${"userAddress"} \n contact No: ${"userContactNo"} \n\n [\nproduct: ${name} \n\n\n total price: ${totalPrice}\n]"
+                    "[\n USER DATA \n\n name: ${"userName"} \n address: ${"userAddress"} \n contact No: ${"userContactNo"} \n\n [\nproduct: ${name} \n\n\n total price: ${totalPrice}\n]"
                 )
                 try {
                     startActivity(Intent.createChooser(i, "Send mail..."))
@@ -124,12 +122,15 @@ class ShoppingCartActivity : AppCompatActivity() {
 
         fabCartClearBtn.setOnClickListener {
             distroy()
+            finish()
+            val intent = Intent(this, ShoppingCartActivity::class.java)
+            startActivity(intent)
         }
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
-    fun showDialog(view: View?) {
+//    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+//    fun showDialog(view: View?) {
 //        val dialog = Dialog(this)
 //        dialog.setTitle("Order Confirm")
 //        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -162,7 +163,7 @@ class ShoppingCartActivity : AppCompatActivity() {
 //            }
 //        }
 //        dialog.show()
-    }
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 

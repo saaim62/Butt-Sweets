@@ -57,7 +57,7 @@ class ShoppingCart {
 
             var cartSize = 0
             getCart().forEach {
-                cartSize += it.quantity;
+                cartSize += it.quantity
             }
 
             return cartSize

@@ -13,7 +13,7 @@ import com.example.buttsweetsfinal.network.CartItem
 import kotlinx.android.synthetic.main.cart_list_item.view.*
 
 class ShoppingCartAdapter(var context: Context, var cartItems: List<CartItem>) :
-        RecyclerView.Adapter<ShoppingCartAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ShoppingCartAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         val layout = LayoutInflater.from(context).inflate(R.layout.cart_list_item, parent, false)
         return ViewHolder(layout)
@@ -30,8 +30,8 @@ class ShoppingCartAdapter(var context: Context, var cartItems: List<CartItem>) :
         @SuppressLint("CheckResult")
         fun bindItem(cartItem: CartItem) {
             Glide.with(product_name.context)
-                    .load(cartItem.product.images[0].src)
-                    .into(itemView.product_image)
+                .load(cartItem.product.images[0].src)
+                .into(itemView.product_image)
             itemView.product_name.text = cartItem.product.name
             itemView.product_price.text = cartItem.product.price
             itemView.product_quantity.text = cartItem.quantity.toString()

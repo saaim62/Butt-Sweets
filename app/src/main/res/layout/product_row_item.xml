@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
@@ -100,16 +101,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:ms_arrow_tint="#9D0B0F"
-        app:ms_background_color="@color/whiteTextColor"
-        app:ms_text_color="#9D0B0F"
-        app:ms_dropdown_height="100dp"
-        app:ms_dropdown_max_height="120dp"
-        app:layout_goneMarginStart="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvSize"
-        app:layout_constraintTop_toTopOf="@+id/tvSize" />
+        app:layout_constraintTop_toTopOf="@+id/tvSize"
+        app:layout_goneMarginStart="20dp"
+        app:ms_arrow_tint="#9D0B0F"
+        app:ms_background_color="@color/whiteTextColor"
+        app:ms_dropdown_height="100dp"
+        app:ms_dropdown_max_height="120dp"
+        app:ms_text_color="#9D0B0F" />
 
     <View
         android:id="@+id/divider"
@@ -135,7 +136,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="130dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
         android:background="@drawable/counter_rounded_shape"
@@ -147,7 +148,7 @@
         <TextView
             android:id="@+id/removeItem"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
             android:gravity="center"
@@ -162,8 +163,8 @@
 
         <TextView
             android:id="@+id/tvValCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:gravity="center"
             android:text="0"
             android:textColor="#9D0B0F"
@@ -177,7 +178,7 @@
         <TextView
             android:id="@+id/addToCart"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:clickable="true"
             android:gravity="center"
             android:onClick="addToCart"
@@ -237,13 +238,12 @@
         android:id="@+id/tvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/product_name"
-        app:layout_constraintStart_toEndOf="@+id/cardList"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/tvQty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
