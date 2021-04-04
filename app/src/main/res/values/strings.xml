@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Butt Sweets</string>
+    <string name="error">error</string>
+    <string name="sorry_something_went_wrong">sorry something went wrong</string>
+    <string name="done">done</string>
+    <string name="alert">alert</string>
+    <string name="no_network_available">no network available</string>
+    <string name="password_incorrect">password incorrect</string>
+    <string name="response_fail">response fail</string>
 </resources>

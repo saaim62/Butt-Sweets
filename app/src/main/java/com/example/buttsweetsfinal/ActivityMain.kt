@@ -9,12 +9,8 @@ import android.view.View
 import android.widget.GridView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
-import com.example.buttsweetsfinal.assetsTab.AssetsMainFragmentTab
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.gridhome.*
-import okhttp3.*
 
 
 class ActivityMain : AppCompatActivity() {
@@ -58,10 +54,10 @@ class ActivityMain : AppCompatActivity() {
                     startActivity(intent)
                     R.id.bottomHome
                 }
-                R.id.bottomMenu -> {
-                    val intent = Intent(this, ActivityMenu::class.java)
-                    startActivity(intent)
-                }
+//                R.id.bottomMenu -> {
+//                    val intent = Intent(this, ActivityMenu::class.java)
+//                    startActivity(intent)
+//                }
                 R.id.bottomOrders -> {
                     val intent = Intent(this, ShoppingCartActivity::class.java)
                     startActivity(intent)
@@ -93,6 +89,21 @@ class ActivityMain : AppCompatActivity() {
         card6.setBackgroundResource(R.drawable.shape_react01)
     }
 
+    private fun moveToProductsScreen(categoryId: String) {
+        Handler().postDelayed({
+            val intent = Intent(
+                this@ActivityMain,
+                ActivityProducts::class.java
+            )
+            intent.putExtra("categoryId", categoryId)
+            startActivity(intent)
+            overridePendingTransition(
+                R.anim.avatar_slide_in_from_left,
+                R.anim.avatar_slide_out_to_left
+            )
+        }, 10)
+    }
+
     private fun onClickListeners() {
 //        searchView.setOnClickListener {
 //            etSearch.visibility = View.VISIBLE
@@ -103,126 +114,27 @@ class ActivityMain : AppCompatActivity() {
 //            searchBtnClose.visibility = View.GONE
 //        }
         cardImgCake.setOnClickListener {
-            Handler().postDelayed({
-                val mainIntent = Intent(
-                    this@ActivityMain,
-                    ActivityCake::class.java
-                )
-                startActivity(mainIntent)
-                overridePendingTransition(
-                    R.anim.avatar_slide_in_from_left,
-                    R.anim.avatar_slide_out_to_left
-                )
-            }, 10)
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivityCake::class.java
-//                )
-//            )
+            moveToProductsScreen("58")
         }
-//        cardImgCake.setOnClickListener {
-//            val fm = supportFragmentManager
-//            fm.beginTransaction().replace(R.id.container, CakesFragment()).commit()
-//        }
 
         cardImgSamosa.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivitySamosa::class.java
-//                )
-//            )
-//            Handler().postDelayed({
-//                val mainIntent = Intent(
-//                    this@ActivityMain,
-//                    ActivitySamosa::class.java
-//                )
-//                startActivity(mainIntent)
-//                overridePendingTransition(
-//                    R.anim.avatar_slide_in_from_left,
-//                    R.anim.avatar_slide_out_to_left
-//                )
-//            }, 10)
-            switchToFragmentAssets()
+            moveToProductsScreen("57")
         }
 
         cardImgSweet.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivitySweets::class.java
-//                )
-//            )
-            Handler().postDelayed({
-                val mainIntent = Intent(
-                    this@ActivityMain,
-                    ActivitySweets::class.java
-                )
-                startActivity(mainIntent)
-                overridePendingTransition(
-                    R.anim.avatar_slide_in_from_left,
-                    R.anim.avatar_slide_out_to_left
-                )
-            }, 10)
+            moveToProductsScreen("62")
         }
 
         cardImgHalwa.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivityHalwajaat::class.java
-//                )
-//            )
-            Handler().postDelayed({
-                val mainIntent = Intent(
-                    this@ActivityMain,
-                    ActivityHalwajaat::class.java
-                )
-                startActivity(mainIntent)
-                overridePendingTransition(
-                    R.anim.avatar_slide_in_from_left,
-                    R.anim.avatar_slide_out_to_left
-                )
-            }, 10)
+            moveToProductsScreen("90")
         }
 
         cardImgInstant.setOnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@ActivityMain,
-//                    ActivityInstantBake::class.java
-//                )
-//            )
-            Handler().postDelayed({
-                val mainIntent = Intent(
-                    this@ActivityMain,
-                    ActivityInstantBake::class.java
-                )
-                startActivity(mainIntent)
-                overridePendingTransition(
-                    R.anim.avatar_slide_in_from_left,
-                    R.anim.avatar_slide_out_to_left
-                )
-            }, 10)
+            moveToProductsScreen("56")
         }
 
         cardImgTvc.setOnClickListener {
-            startActivity(
-                Intent(
-                    this@ActivityMain,
-                    ActivityTvc::class.java
-                )
-            )
+            moveToProductsScreen("57")
         }
-    }
-    private fun switchToFragmentAssets() {
-        val manager = supportFragmentManager
-        manager.beginTransaction()
-            .replace(R.id.activity_home_page, AssetsMainFragmentTab(), FRAGMENT_TAG_ASSETS)
-            .commitAllowingStateLoss()
-    }
-    companion object {
-        private const val FRAGMENT_TAG_ASSETS = "fragment_tag_assets"
     }
 }

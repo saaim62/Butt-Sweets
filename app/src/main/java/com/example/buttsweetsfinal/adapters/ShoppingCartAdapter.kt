@@ -25,7 +25,7 @@ class ShoppingCartAdapter(var context: Context, var cartItems: List<CartItem>) :
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var product_name: TextView = itemView.findViewById(R.id.product_name)
+        private var product_name: TextView = itemView.findViewById(R.id.product_name)
 
         @SuppressLint("CheckResult")
         fun bindItem(cartItem: CartItem) {

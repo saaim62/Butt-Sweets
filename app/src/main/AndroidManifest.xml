@@ -2,10 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.buttsweetsfinal">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
+        android:name="com.example.buttsweetsfinal.network.Application"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/buttlogo"
@@ -33,14 +36,8 @@
             android:theme="@style/NoTitleDialog" />
         <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".ActivityMain" />
-        <activity android:name=".ActivitySamosa" />
-        <activity android:name=".ActivitySweets" />
-        <activity android:name=".ActivityTvc" />
-        <activity android:name=".ActivityInstantBake" />
-        <activity android:name=".ActivityHalwajaat" />
-        <activity android:name=".ActivityMenu" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".ActivityCake" />
+        <activity android:name=".ActivityProducts" />
     </application>
 
 </manifest>

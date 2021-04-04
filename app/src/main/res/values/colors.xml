@@ -11,4 +11,6 @@
     <color name="colorBackground">#FBFBFB</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
+    <color name="colorGreenLight">#9CFF95</color>
+    <color name="colorGreenDark">#099104</color>
 </resources>

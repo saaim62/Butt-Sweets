@@ -12,7 +12,6 @@ import java.util.*
 
 
 class SplashActivity : Activity() {
-    lateinit var activityCake:ActivityCake
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
