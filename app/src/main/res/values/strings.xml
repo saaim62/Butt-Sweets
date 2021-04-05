@@ -7,4 +7,6 @@
     <string name="no_network_available">no network available</string>
     <string name="password_incorrect">password incorrect</string>
     <string name="response_fail">response fail</string>
+    <string name="minimum_password">short password</string>
+    <string name="auth_failed">auth failed</string>
 </resources>

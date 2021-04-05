@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.GridView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.buttsweetsfinal.user.FireBaseLoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.gridhome.*
 
@@ -20,14 +21,16 @@ class ActivityMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
-        val intent = Intent(this, ActivityLogin::class.java)
-        startActivity(intent)
+
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         supportActionBar?.hide()
         onClickListeners()
         video()
         bottomNav()
         cardBackground()
+
+        val intent = Intent(this, FireBaseLoginActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onResume() {
