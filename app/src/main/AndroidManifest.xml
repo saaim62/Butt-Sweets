@@ -34,7 +34,7 @@
             android:name=".ActivityLogin"
             android:excludeFromRecents="true"
             android:theme="@style/NoTitleDialog" />
-        <activity android:name=".ShoppingCartActivity" />
+        <activity android:name=".cart.ShoppingCartActivity" />
         <activity android:name=".ActivityMain" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ActivityProducts" />

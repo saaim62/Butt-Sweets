@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.example.buttsweetsfinal.adapters.ProductsAdapter
+import com.example.buttsweetsfinal.cart.ShoppingCart
+import com.example.buttsweetsfinal.cart.ShoppingCartActivity
 import com.example.buttsweetsfinal.enums.DialogTheme
 import com.example.buttsweetsfinal.network.*
 import com.example.buttsweetsfinal.providers.AlertDialogProvider

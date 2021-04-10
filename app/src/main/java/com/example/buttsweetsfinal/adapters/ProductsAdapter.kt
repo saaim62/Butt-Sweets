@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.buttsweetsfinal.ActivityProducts
 import com.example.buttsweetsfinal.R
-import com.example.buttsweetsfinal.ShoppingCart
-import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
-import com.example.buttsweetsfinal.ShoppingCart.Companion.getEachShoppingCartSize
-import com.example.buttsweetsfinal.network.APIService
+import com.example.buttsweetsfinal.cart.ShoppingCart
+import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.distroy
+import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.getEachShoppingCartSize
 import com.example.buttsweetsfinal.network.CartItem
 import com.example.buttsweetsfinal.network.Product
 import com.google.android.material.snackbar.Snackbar
