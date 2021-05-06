@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.GridView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.buttsweetsfinal.cart.ShoppingCartActivity
 import com.example.buttsweetsfinal.user.FireBaseLoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.gridhome.*

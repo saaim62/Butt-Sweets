@@ -1,4 +1,4 @@
-package com.example.buttsweetsfinal
+package com.example.buttsweetsfinal.cart
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -17,8 +17,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
-import com.example.buttsweetsfinal.ShoppingCart.Companion.getCart
+import com.example.buttsweetsfinal.R
+import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.distroy
+import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.getCart
 import com.example.buttsweetsfinal.adapters.ShoppingCartAdapter
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_shopping_cart.*

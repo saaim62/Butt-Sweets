@@ -1,7 +1,6 @@
 package com.example.buttsweetsfinal.adapters
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.buttsweetsfinal.ActivityProducts
 import com.example.buttsweetsfinal.R
-import com.example.buttsweetsfinal.ShoppingCart
-import com.example.buttsweetsfinal.ShoppingCart.Companion.distroy
-import com.example.buttsweetsfinal.ShoppingCart.Companion.getEachShoppingCartSize
-import com.example.buttsweetsfinal.network.APIService
+import com.example.buttsweetsfinal.cart.ShoppingCart
+import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.distroy
+import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.getEachShoppingCartSize
 import com.example.buttsweetsfinal.network.CartItem
 import com.example.buttsweetsfinal.network.Product
 import com.google.android.material.snackbar.Snackbar
@@ -24,53 +22,44 @@ import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.product_row_item.view.*
 
 
-class ProductsAdapter(var context: Context, var products: List<Product> = arrayListOf()) :
+class ProductsAdapter(var products: List<Product> = arrayListOf()) :
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
-
-        val view = LayoutInflater.from(context).inflate(R.layout.product_row_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.product_row_item, parent, false)
         return ViewHolder(view)
-
     }
 
     override fun getItemCount(): Int = products.size
-
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
         viewHolder.bindProduct(products[position])
-        (context as ActivityProducts).coordinator
+        (viewHolder.itemView.context as ActivityProducts).coordinator
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var product_name: TextView = itemView.findViewById(R.id.product_name)
-
         @SuppressLint("CheckResult")
         fun bindProduct(product: Product) {
-            itemView. product_size_spinner.visibility = View.VISIBLE
+            itemView.product_size_spinner.visibility = View.VISIBLE
             itemView.tvSize.visibility = View.VISIBLE
-
             itemView.product_name.text = product.name
             itemView.product_price.text = product.price
 //            product_size_spinner = product.attributes[0].options.toString()
-
             Glide.with(product_name.context)
                 .load(product.images[0].src)
                 .into(itemView.product_image)
-
             //                val products = mutableListOf<Product>()
 //                products.add(product)
-//
-
 //                ShoppingCart.addItem(item)
-
             itemView.product_size_spinner.setItems("1 Pound", "2 Pound")
             itemView.product_size_spinner.setOnItemSelectedListener { view, position, id, item ->
                 when (item) {
                     "1 Pound" -> {
-                        var price:String? = null
+                        var price: String? = null
                         val x: String
-                        val value:Int = 2
-                       x = product.id?.plus(value).toString()
+                        val value: Int = 2
+                        x = product.id?.plus(value).toString()
                         Toast.makeText(itemView.context, x, Toast.LENGTH_SHORT).show()
 //                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {
 //                            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
@@ -85,9 +74,9 @@ class ProductsAdapter(var context: Context, var products: List<Product> = arrayL
 //                        })
                     }
                     "2 Pound" -> {
-                        var price:String? = null
+                        var price: String? = null
                         val x: String
-                        val value:Int = 3
+                        val value: Int = 3
                         x = product.id?.plus(value).toString()
                         Toast.makeText(itemView.context, x, Toast.LENGTH_SHORT).show()
 //                        apiService.getPrice().enqueue(object : retrofit2.Callback<List<Product>> {

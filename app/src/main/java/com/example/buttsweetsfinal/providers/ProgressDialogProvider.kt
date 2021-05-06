@@ -7,7 +7,7 @@ import com.kaopiz.kprogresshud.KProgressHUD
 object ProgressDialogProvider {
 
     @SuppressLint("StaticFieldLeak")
-    private lateinit var progressHud: KProgressHUD
+    lateinit var progressHud: KProgressHUD
 
     fun show(context: Context) {
         progressHud = KProgressHUD.create(context)

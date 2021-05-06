@@ -150,7 +150,7 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="Halwajaat"
+                    android:text="Halwa"
                     android:textColor="#9D0B0F"
                     android:textFontWeight="700"
                     android:textSize="16sp"

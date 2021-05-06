@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface APIService {
+interface ApiInterface {
 
     //    @GET("buttsweets/cakes")
     @GET("products?per_page=100")

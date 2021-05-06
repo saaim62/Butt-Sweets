@@ -8,11 +8,11 @@ import com.example.buttsweetsfinal.providers.ProgressDialogProvider
 abstract class BaseFragment : Fragment(), ApiCallbacks {
 
     override fun doBeforeApiCall() {
-        ProgressDialogProvider.show(requireActivity())
+//        ProgressDialogProvider.show(requireActivity())
     }
 
     override fun doAfterApiCall() {
-        ProgressDialogProvider.dismiss()
+//        ProgressDialogProvider.dismiss()
     }
 
     override fun onApiFailure(errorCode: Int) {
