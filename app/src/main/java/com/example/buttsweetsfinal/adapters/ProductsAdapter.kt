@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.buttsweetsfinal.ActivityProducts
 import com.example.buttsweetsfinal.R
 import com.example.buttsweetsfinal.cart.ShoppingCart
-import com.example.buttsweetsfinal.cart.ShoppingCart.distroy
+import com.example.buttsweetsfinal.cart.ShoppingCart.destroy
 import com.example.buttsweetsfinal.cart.ShoppingCart.getEachShoppingCartSize
 import com.example.buttsweetsfinal.network.CartItem
 import com.example.buttsweetsfinal.network.Product
@@ -20,7 +20,6 @@ import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.product_row_item.view.*
-import okhttp3.internal.notifyAll
 
 
 class ProductsAdapter(var products: List<Product> = arrayListOf()) :
@@ -119,7 +118,7 @@ class ProductsAdapter(var products: List<Product> = arrayListOf()) :
 
                 itemView.removeItem.setOnClickListener { view ->
                     val item = CartItem(product)
-                    ShoppingCart.removeItem(item, itemView.context)
+                    ShoppingCart.removeItem(item)
                     Snackbar.make(
                         (itemView.context as ActivityProducts).coordinator,
                         "${product.name} removed from your cart",
@@ -133,7 +132,7 @@ class ProductsAdapter(var products: List<Product> = arrayListOf()) :
                 cart.forEach { cartItem ->
                     quantity += cartItem.quantity
                     if (quantity == 0) {
-                        distroy()
+                        destroy()
                     }
                 }
                 (itemView.context as ActivityProducts).cart_size.text = quantity.toString()

@@ -2,7 +2,6 @@ package com.example.buttsweetsfinal.cart
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
@@ -19,12 +18,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.buttsweetsfinal.R
 import com.example.buttsweetsfinal.adapters.ShoppingCartAdapter
-import com.example.buttsweetsfinal.cart.ShoppingCart.distroy
+import com.example.buttsweetsfinal.cart.ShoppingCart.addItem
+import com.example.buttsweetsfinal.cart.ShoppingCart.destroy
 import com.example.buttsweetsfinal.cart.ShoppingCart.getCart
 import com.example.buttsweetsfinal.mailSender.SendMail
+import com.example.buttsweetsfinal.network.CartItem
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
-import okhttp3.internal.notifyAll
 
 
 class ShoppingCartActivity : AppCompatActivity() {
@@ -47,8 +47,11 @@ class ShoppingCartActivity : AppCompatActivity() {
             PorterDuff.Mode.SRC_ATOP
         )
         supportActionBar?.setHomeAsUpIndicator(upArrow)
-        adapter = ShoppingCartAdapter(this, getCart())
-        adapter.notifyDataSetChanged()
+        adapter = ShoppingCartAdapter(
+            getCart(),
+            ::addCartItem,
+            ::removeCartItem
+        )
         shopping_cart_recyclerView.adapter = adapter
         shopping_cart_recyclerView.layoutManager =
             androidx.recyclerview.widget.LinearLayoutManager(this)
@@ -106,7 +109,7 @@ class ShoppingCartActivity : AppCompatActivity() {
                         dialog.findViewById<View>(R.id.etEmail) as EditText
                     val email = etEmail.text!!.toString()
 
-                    if(!email.isNullOrEmpty() || !userName.isNullOrEmpty() || !userAddress.isNullOrEmpty() || !userPhoneNo.isNullOrEmpty()){
+                    if (!email.isNullOrEmpty() || !userName.isNullOrEmpty() || !userAddress.isNullOrEmpty() || !userPhoneNo.isNullOrEmpty()) {
                         Toast.makeText(
                             this,
                             "Your Order Has been placed",
@@ -117,8 +120,7 @@ class ShoppingCartActivity : AppCompatActivity() {
                             "User Data \n [\n Email Address: $email \n name: $userName \n address: $userAddress \n contact No: $userPhoneNo \n] \n\n Order Details \n [\n Special Demands: $userDemands \n $orderDetails \n\n\n total price: ${totalPrice}\n]"
                         val sm = SendMail(this, email, subject, message)
                         sm.execute()
-                    }
-                    else{
+                    } else {
                         Toast.makeText(
                             this,
                             "please fill the above fields",
@@ -132,7 +134,7 @@ class ShoppingCartActivity : AppCompatActivity() {
         }
 
         fabCartClearBtn.setOnClickListener {
-            distroy()
+            destroy()
             adapter.notifyDataSetChanged()
 //            finish()
 //            val intent = Intent(this, ShoppingCartActivity::class.java)
@@ -140,14 +142,24 @@ class ShoppingCartActivity : AppCompatActivity() {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    private fun addCartItem(cartItem: CartItem) {
+        addItem(cartItem)
+        adapter.updateList(getCart())
+        adapter.notifyDataSetChanged()
+    }
 
+    private fun removeCartItem(cartItem: CartItem) {
+        ShoppingCart.removeItem(cartItem)
+        adapter.updateList(getCart())
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
             }
         }
-
         return item.let { super.onOptionsItemSelected(it) }
     }
 }
