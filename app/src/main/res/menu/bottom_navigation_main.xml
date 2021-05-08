@@ -8,11 +8,6 @@
         android:title="Home"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/bottomMenu"
-        android:enabled="true"
-        android:title="Menu"
-        app:showAsAction="always" />
 
     <item
         android:id="@+id/bottomOrders"
@@ -23,7 +18,7 @@
     <item
         android:id="@+id/bottomProfile"
         android:enabled="true"
-        android:title="User"
+        android:title="Complaint"
         app:showAsAction="ifRoom" />
 
 </menu>

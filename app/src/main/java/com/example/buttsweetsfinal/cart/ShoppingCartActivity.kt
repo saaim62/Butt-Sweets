@@ -2,7 +2,6 @@ package com.example.buttsweetsfinal.cart
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Build
@@ -12,17 +11,20 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.buttsweetsfinal.R
-import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.distroy
-import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.getCart
 import com.example.buttsweetsfinal.adapters.ShoppingCartAdapter
+import com.example.buttsweetsfinal.cart.ShoppingCart.distroy
+import com.example.buttsweetsfinal.cart.ShoppingCart.getCart
+import com.example.buttsweetsfinal.mailSender.SendMail
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_shopping_cart.*
+import okhttp3.internal.notifyAll
 
 
 class ShoppingCartActivity : AppCompatActivity() {
@@ -57,8 +59,8 @@ class ShoppingCartActivity : AppCompatActivity() {
             )
         }
 
-        val name =
-            getCart().fold(String()) { acc, cartItem -> acc + "\n" + cartItem.product.name + "   qty: " + cartItem.quantity + "  per piece price: " + cartItem.product.price + "\n" }
+        val orderDetails =
+            getCart().fold(String()) { acc, cartItem -> acc + "\n\n" + cartItem.product.name + "   qty: " + cartItem.quantity + "  per piece price: " + cartItem.product.price + "\n" }
 
         total_price.text = "Rs ${totalPrice}"
         checkOutBtn.setOnClickListener {
@@ -75,47 +77,55 @@ class ShoppingCartActivity : AppCompatActivity() {
             lp.height = WindowManager.LayoutParams.WRAP_CONTENT
             dialog.show()
             dialog.window?.attributes = lp
-//            val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-//            val myEdit = sharedPreferences.edit()
-//            myEdit.putString("name", etName.text.toString())
-//            myEdit.putString("address", etAddress.text.toString())
-//            myEdit.putString("contact no", etPhoneNo.text.toString())
-//            myEdit.apply()
-
-//            val sh = getSharedPreferences("MySharedPref", MODE_APPEND)
-//            val userName = sh.getString("name", "")
-//            val userAddress = sh.getString("address", "")
-//            val userContactNo = sh.getString("contact No", "")
-//            val etName:TextView = findViewById(R.id.etName)
-
-//            userName?.text= etName.toString()
             val dialogButtonClose: ImageView =
                 dialog.findViewById<View>(R.id.dialCloseBtn) as ImageView
             dialogButtonClose.setOnClickListener { dialog.dismiss() }
             val dialogButtonConfirm: Button =
                 dialog.findViewById<View>(R.id.dialConfirmBtn) as Button
-            dialogButtonConfirm.setOnClickListener {
-                Toast.makeText(
-                    this,
-                    "Your Order Has been placed",
-                    Toast.LENGTH_SHORT
-                ).show()
-                val i = Intent(Intent.ACTION_SEND)
-                i.type = "message/rfc822"
-                i.putExtra(Intent.EXTRA_EMAIL, arrayOf("saaim62@gmail.com"))
-                i.putExtra(Intent.EXTRA_SUBJECT, "User Order")
-                i.putExtra(
-                    Intent.EXTRA_TEXT,
-                    "[\n USER DATA \n\n name: ${"userName"} \n address: ${"userAddress"} \n contact No: ${"userContactNo"} \n\n [\nproduct: ${name} \n\n\n total price: ${totalPrice}\n]"
-                )
-                try {
-                    startActivity(Intent.createChooser(i, "Send mail..."))
-                } catch (ex: ActivityNotFoundException) {
-                    Toast.makeText(
-                        this,
-                        "There are no email clients installed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+            if (totalPrice < 800) {
+                dialogButtonConfirm.isEnabled = false
+            } else {
+                dialogButtonConfirm.setOnClickListener {
+                    val etName: EditText =
+                        dialog.findViewById<View>(R.id.etName) as EditText
+                    val userName = etName.text!!.toString()
+
+                    val etAddress: EditText =
+                        dialog.findViewById<View>(R.id.etAddress) as EditText
+                    val userAddress = etAddress.text!!.toString()
+
+                    val etPhoneNo: EditText =
+                        dialog.findViewById<View>(R.id.etPhoneNo) as EditText
+                    val userPhoneNo = etPhoneNo.text!!.toString()
+
+                    val etDemands: EditText =
+                        dialog.findViewById<View>(R.id.etDemands) as EditText
+                    val userDemands = etDemands.text.toString()
+
+                    val etEmail: EditText =
+                        dialog.findViewById<View>(R.id.etEmail) as EditText
+                    val email = etEmail.text!!.toString()
+
+                    if(!email.isNullOrEmpty() || !userName.isNullOrEmpty() || !userAddress.isNullOrEmpty() || !userPhoneNo.isNullOrEmpty()){
+                        Toast.makeText(
+                            this,
+                            "Your Order Has been placed",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val subject = "User Orders"
+                        val message =
+                            "User Data \n [\n Email Address: $email \n name: $userName \n address: $userAddress \n contact No: $userPhoneNo \n] \n\n Order Details \n [\n Special Demands: $userDemands \n $orderDetails \n\n\n total price: ${totalPrice}\n]"
+                        val sm = SendMail(this, email, subject, message)
+                        sm.execute()
+                    }
+                    else{
+                        Toast.makeText(
+                            this,
+                            "please fill the above fields",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                 }
             }
             dialog.show()
@@ -123,55 +133,18 @@ class ShoppingCartActivity : AppCompatActivity() {
 
         fabCartClearBtn.setOnClickListener {
             distroy()
-            finish()
-            val intent = Intent(this, ShoppingCartActivity::class.java)
-            startActivity(intent)
+            adapter.notifyDataSetChanged()
+//            finish()
+//            val intent = Intent(this, ShoppingCartActivity::class.java)
+//            startActivity(intent)
         }
     }
-
-
-//    @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
-//    fun showDialog(view: View?) {
-//        val dialog = Dialog(this)
-//        dialog.setTitle("Order Confirm")
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog.setCancelable(false)
-//        dialog.setContentView(R.layout.dialogbrand_layout)
-//        dialog.window?.setLayout(1400, 1800)
-//        dialog.window?.setElevation(20F)
-//        val dialogButtonClose: ImageView = dialog.findViewById<View>(R.id.dialCloseBtn) as ImageView
-//        dialogButtonClose.setOnClickListener { dialog.dismiss() }
-//        val dialogButtonConfirm: Button = dialog.findViewById<View>(R.id.dialConfirmBtn) as Button
-//        dialogButtonConfirm.setOnClickListener {
-//            Toast.makeText(
-//                this,
-//                "Your Order Has been placed",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//            val i = Intent(Intent.ACTION_SEND)
-//            i.type = "message/rfc822"
-//            i.putExtra(Intent.EXTRA_EMAIL, arrayOf("saaim62@gmail.com"))
-//            i.putExtra(Intent.EXTRA_SUBJECT, "User Order")
-//            i.putExtra(Intent.EXTRA_TEXT, dataCart)
-//            try {
-//                startActivity(Intent.createChooser(i, "Send mail..."))
-//            } catch (ex: ActivityNotFoundException) {
-//                Toast.makeText(
-//                    this,
-//                    "There are no email clients installed.",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
-//        dialog.show()
-//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
-
             }
         }
 

@@ -11,8 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.buttsweetsfinal.ActivityProducts
 import com.example.buttsweetsfinal.R
 import com.example.buttsweetsfinal.cart.ShoppingCart
-import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.distroy
-import com.example.buttsweetsfinal.cart.ShoppingCart.Companion.getEachShoppingCartSize
+import com.example.buttsweetsfinal.cart.ShoppingCart.distroy
+import com.example.buttsweetsfinal.cart.ShoppingCart.getEachShoppingCartSize
 import com.example.buttsweetsfinal.network.CartItem
 import com.example.buttsweetsfinal.network.Product
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +20,7 @@ import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import kotlinx.android.synthetic.main.activity_products.*
 import kotlinx.android.synthetic.main.product_row_item.view.*
+import okhttp3.internal.notifyAll
 
 
 class ProductsAdapter(var products: List<Product> = arrayListOf()) :
@@ -39,6 +40,7 @@ class ProductsAdapter(var products: List<Product> = arrayListOf()) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var product_name: TextView = itemView.findViewById(R.id.product_name)
+
         @SuppressLint("CheckResult")
         fun bindProduct(product: Product) {
             itemView.product_size_spinner.visibility = View.VISIBLE
@@ -135,7 +137,6 @@ class ProductsAdapter(var products: List<Product> = arrayListOf()) :
                     }
                 }
                 (itemView.context as ActivityProducts).cart_size.text = quantity.toString()
-                Toast.makeText(itemView.context, "Cart size $quantity", Toast.LENGTH_SHORT).show()
             }
         }
     }

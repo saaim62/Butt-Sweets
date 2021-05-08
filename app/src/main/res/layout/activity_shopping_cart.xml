@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinator"
+    android:id="@+id/coordinator2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fffffdff"
@@ -26,7 +26,6 @@
             android:background="@android:color/white"
             app:title="Shopping Cart"
             app:titleTextColor="#9D0B0F" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -35,8 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="2dp"
-        android:paddingBottom="70dp"
         android:clipToPadding="false"
+        android:paddingBottom="70dp"
         android:scrollbarStyle="outsideOverlay"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
@@ -45,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -60,37 +59,38 @@
         tools:targetApi="lollipop">
 
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/totalLabel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="4dp"
-            tools:ignore="RtlCompat">
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:gravity="center"
+            android:text="Total"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/totalLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Total"
-                android:textColor="@color/whiteTextColor"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/total_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:padding="8dp"
-                android:textColor="@color/whiteTextColor"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="RtlCompat" />
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/checkOutBtn"
+            app:layout_constraintStart_toEndOf="@+id/totalLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/checkOutBtn"
@@ -107,10 +107,13 @@
             android:text="Checkout"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabCartClearBtn"
@@ -119,14 +122,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/black"
         android:clickable="true"
-        app:fabSize="normal"
         android:src="@android:drawable/ic_menu_delete"
         app:backgroundTint="#9D0B0F"
-        app:rippleColor="@color/black"
-        android:background="@color/black"
+        app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@color/black"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,7 +60,7 @@
                     android:text="Cake's"
                     android:textColor="#9D0B0F"
                     android:textFontWeight="700"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -107,7 +107,7 @@
                     android:text="Instant Baked"
                     android:textColor="#9D0B0F"
                     android:textFontWeight="700"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -150,10 +150,10 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="Halwa"
+                    android:text="Halwajaat"
                     android:textColor="#9D0B0F"
                     android:textFontWeight="700"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -200,7 +200,7 @@
                     android:text="Sweets"
                     android:textColor="#9D0B0F"
                     android:textFontWeight="700"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -248,7 +248,7 @@
                     android:text="Samosa"
                     android:textColor="#9D0B0F"
                     android:textFontWeight="700"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -296,7 +296,7 @@
                     android:text="TVC'S"
                     android:textColor="#9D0B0F"
                     android:textFontWeight="700"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

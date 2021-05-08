@@ -17,7 +17,7 @@
         android:roundIcon="@drawable/buttlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".user.UserProfileActivity" />
 
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -36,7 +36,6 @@
             android:theme="@style/NoTitleDialog" />
         <activity android:name=".cart.ShoppingCartActivity" />
         <activity android:name=".ActivityMain" />
-        <activity android:name=".user.ProfileActivity" />
         <activity android:name=".ActivityProducts" />
     </application>
 

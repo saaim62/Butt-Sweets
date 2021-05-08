@@ -11,6 +11,7 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.buttsweetsfinal.cart.ShoppingCartActivity
 import com.example.buttsweetsfinal.user.FireBaseLoginActivity
+import com.example.buttsweetsfinal.user.UserProfileActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.gridhome.*
 
@@ -48,9 +49,8 @@ class ActivityMain : AppCompatActivity() {
         val bottomNavigationView: BottomNavigationView =
             findViewById<View>(R.id.bottomNavigationView) as BottomNavigationView
         bottomNavigationView.menu.getItem(0).setIcon(R.drawable.homeicon)
-        bottomNavigationView.menu.getItem(1).setIcon(R.drawable.lines)
-        bottomNavigationView.menu.getItem(2).setIcon(R.drawable.cart)
-        bottomNavigationView.menu.getItem(3).setIcon(R.drawable.profileicon)
+        bottomNavigationView.menu.getItem(1).setIcon(R.drawable.cart)
+        bottomNavigationView.menu.getItem(2).setIcon(R.drawable.profileicon)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottomHome -> {
